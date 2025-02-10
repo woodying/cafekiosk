@@ -9,3 +9,4 @@ class Americano : Beverage {
         return 4000
     }
 }
+
