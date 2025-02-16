@@ -11,7 +11,7 @@ class ProductController(
 ) {
 
     @GetMapping("/api/v1/products/selling")
-    suspend fun getSellingProducts(): List<ProductResponse> {
+    fun getSellingProducts(): List<ProductResponse> {
         return productService.getSellingProducts()
     }
 }

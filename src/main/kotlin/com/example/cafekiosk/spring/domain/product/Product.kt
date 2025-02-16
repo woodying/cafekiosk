@@ -4,6 +4,7 @@ import com.example.cafekiosk.spring.domain.BaseEntity
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
+@Entity
 @Table(name = "product")
 data class Product(
 
@@ -17,7 +18,7 @@ data class Product(
     val type: Type,
 
     @Enumerated(EnumType.STRING)
-    val sellingType: SellingType,
+    val sellingStatus: SellingStatus,
 
     val name: String,
     val price: Int,
@@ -30,13 +31,13 @@ data class Product(
         BAKERY("베이커리");
     }
 
-    enum class SellingType(val description: String) {
+    enum class SellingStatus(val description: String) {
         SELLING("판매중"),
         HOLD("판매 보류"),
         STOP_SELLING("판매 중지");
 
         companion object {
-            fun forDisplay(): List<SellingType> {
+            fun forDisplay(): List<SellingStatus> {
                 return listOf(SELLING, HOLD)
             }
         }
