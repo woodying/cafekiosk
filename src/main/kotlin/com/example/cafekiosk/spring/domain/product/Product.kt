@@ -2,7 +2,6 @@ package com.example.cafekiosk.spring.domain.product
 
 import com.example.cafekiosk.spring.domain.BaseEntity
 import jakarta.persistence.*
-import java.time.LocalDateTime
 
 @Entity
 @Table(name = "product")
@@ -21,10 +20,8 @@ data class Product(
     val sellingStatus: SellingStatus,
 
     val name: String,
-    val price: Int,
-    override val createdAt: LocalDateTime? = null,
-    override val modifiedAt: LocalDateTime? = null,
-) : BaseEntity(createdAt, modifiedAt) {
+    val price: Int
+) : BaseEntity() {
     enum class Type(val description: String) {
         HANDMADE("제조 음료"),
         BOTTLE("병 음료"),

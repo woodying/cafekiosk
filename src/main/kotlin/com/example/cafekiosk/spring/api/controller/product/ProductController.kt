@@ -1,4 +1,4 @@
-package com.example.cafekiosk.spring.api.controller
+package com.example.cafekiosk.spring.api.controller.product
 
 import com.example.cafekiosk.spring.api.service.product.ProductService
 import com.example.cafekiosk.spring.api.service.product.response.ProductResponse
