@@ -26,6 +26,10 @@ data class Product(
         HANDMADE("제조 음료"),
         BOTTLE("병 음료"),
         BAKERY("베이커리");
+
+        companion object {
+            val STOCK_TYPES = listOf(BOTTLE, BAKERY)
+        }
     }
 
     enum class SellingStatus(val description: String) {
