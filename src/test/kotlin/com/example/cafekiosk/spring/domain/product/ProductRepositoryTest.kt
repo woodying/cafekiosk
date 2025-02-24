@@ -99,4 +99,40 @@ class ProductRepositoryTest(
                 tuple("002", "카페라떼", Product.SellingStatus.HOLD),
             )
     }
+
+    @DisplayName("가장 마지막 상품번호를 조회한다.")
+    @Test
+    fun findLatestProductNumber() {
+        // given
+        val targetProductNumber = "003"
+        val product1 = Product(
+            productNumber = "001",
+            type = Product.Type.HANDMADE,
+            sellingStatus = Product.SellingStatus.SELLING,
+            name = "아메리카노",
+            price = 4000
+        )
+        val product2 = Product(
+            productNumber = "002",
+            type = Product.Type.HANDMADE,
+            sellingStatus = Product.SellingStatus.HOLD,
+            name = "카페라떼",
+            price = 4500
+        )
+        val product3 = Product(
+            productNumber = targetProductNumber,
+            type = Product.Type.HANDMADE,
+            sellingStatus = Product.SellingStatus.STOP_SELLING,
+            name = "팥빙수",
+            price = 7000
+        )
+
+        productRepository.saveAll(listOf(product1, product2, product3))
+
+        // when
+        val latestProductNumber = productRepository.findLatestProductNumber()
+
+        // then
+        assertThat(latestProductNumber).isEqualTo(targetProductNumber)
+    }
 }
