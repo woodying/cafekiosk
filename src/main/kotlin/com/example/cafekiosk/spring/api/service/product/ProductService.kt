@@ -4,12 +4,15 @@ import com.example.cafekiosk.spring.api.controller.product.request.ProductCreate
 import com.example.cafekiosk.spring.api.service.product.response.ProductResponse
 import com.example.cafekiosk.spring.domain.product.Product
 import com.example.cafekiosk.spring.domain.product.ProductRepository
+import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 
 @Service
 class ProductService(
     private val productRepository: ProductRepository
 ) {
+
+    @Transactional
     fun getSellingProducts(): List<ProductResponse> {
         return productRepository
             .findBySellingStatusIn(Product.SellingStatus.forDisplay())
