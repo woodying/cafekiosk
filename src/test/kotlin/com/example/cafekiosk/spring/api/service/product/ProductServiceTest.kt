@@ -5,6 +5,7 @@ import com.example.cafekiosk.spring.domain.product.Product
 import com.example.cafekiosk.spring.domain.product.ProductRepository
 import jakarta.transaction.Transactional
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.groups.Tuple.tuple
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -28,28 +29,15 @@ class ProductServiceTest {
     @Test
     fun create() {
         // given
-        val product1 = Product(
+        val product = Product(
             productNumber = "001",
             type = Product.Type.HANDMADE,
             sellingStatus = Product.SellingStatus.SELLING,
             name = "아메리카노",
             price = 1000
         )
-        val product2 = Product(
-            productNumber = "002",
-            type = Product.Type.HANDMADE,
-            sellingStatus = Product.SellingStatus.HOLD,
-            name = "카페라떼",
-            price = 3000
-        )
-        val product3 = Product(
-            productNumber = "003",
-            type = Product.Type.HANDMADE,
-            sellingStatus = Product.SellingStatus.STOP_SELLING,
-            name = "팥빙수",
-            price = 7000
-        )
-        productRepository.saveAll(listOf(product1, product2, product3))
+        productRepository.save(product)
+
         val request = ProductCreateRequest(
             productType = Product.Type.HANDMADE,
             name = "카푸치노",
@@ -63,7 +51,16 @@ class ProductServiceTest {
         // then
         assertThat(productResponse)
             .extracting("productNumber", "type", "name", "price", "sellingStatus")
-            .contains("004", Product.Type.HANDMADE, "카푸치노", 5000, Product.SellingStatus.SELLING)
+            .contains("002", Product.Type.HANDMADE, "카푸치노", 5000, Product.SellingStatus.SELLING)
+
+        val products = productRepository.findAll()
+        assertThat(products)
+            .hasSize(2)
+            .extracting("productNumber", "name", "type", "price", "sellingStatus")
+            .containsExactlyInAnyOrder(
+                tuple("001", "아메리카노", Product.Type.HANDMADE, 1000, Product.SellingStatus.SELLING),
+                tuple("002", "카푸치노", Product.Type.HANDMADE, 5000, Product.SellingStatus.SELLING)
+            )
     }
 
     @DisplayName("상품번호를 1 증가시킨다.")
