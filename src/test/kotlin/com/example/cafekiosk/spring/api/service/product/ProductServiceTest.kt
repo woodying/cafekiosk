@@ -81,6 +81,6 @@ class ProductServiceTest {
 
         // then
         assertThat(nextProductNumber1).isEqualTo("989")
-        assertThat(nextProductNumber2).isEqualTo("000")
+        assertThat(nextProductNumber2).isEqualTo("001")
     }
 }

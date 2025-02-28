@@ -36,7 +36,7 @@ class ProductService(
 
     private fun incProductNumber(productNumber: String?): String {
         if (productNumber == null) {
-            return "000"
+            return "001"
         }
 
         return productNumber.toInt()
