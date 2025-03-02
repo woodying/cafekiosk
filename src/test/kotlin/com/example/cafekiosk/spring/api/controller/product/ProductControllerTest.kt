@@ -30,6 +30,34 @@ class ProductControllerTest {
     @MockkBean
     private lateinit var productService: ProductService
 
+    @DisplayName("판매 상품을 조회한다.")
+    @Test
+    fun getSellingProducts() {
+        // given
+        every { productService.getSellingProducts() } returns listOf(
+            ProductResponse(
+                productNumber = "001",
+                type = Product.Type.HANDMADE,
+                sellingStatus = Product.SellingStatus.SELLING,
+                name = "아메리카노",
+                price = 4000,
+                createdAt = null,
+                modifiedAt = null
+            )
+        )
+
+        // when, then
+        mockMvc.perform(
+            MockMvcRequestBuilders
+                .get("/api/v1/products/selling")
+        )
+            .andDo(MockMvcResultHandlers.print())
+            .andExpect(MockMvcResultMatchers.status().isOk)
+            .andExpect(jsonPath("$.code").value(200))
+            .andExpect(jsonPath("$.status").value("OK"))
+            .andExpect(jsonPath("$.data").isArray())
+    }
+
     @DisplayName("신규 상품을 생성한다.")
     @Test
     fun createProduct() {
