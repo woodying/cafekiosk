@@ -1,5 +1,6 @@
 package com.example.cafekiosk.spring.api.controller.order
 
+import com.example.cafekiosk.spring.api.ApiResponse
 import com.example.cafekiosk.spring.api.controller.order.request.OrderCreateRequest
 import com.example.cafekiosk.spring.api.service.order.OrderService
 import com.example.cafekiosk.spring.api.service.order.response.OrderResponse
@@ -14,7 +15,7 @@ class OrderController(
 ) {
 
     @PostMapping("/api/v1/orders/new")
-    fun createOrder(@RequestBody request: OrderCreateRequest): OrderResponse {
-        return orderService.createOrder(request, LocalDateTime.now())
+    fun createOrder(@RequestBody request: OrderCreateRequest): ApiResponse<OrderResponse> {
+        return ApiResponse.ok(orderService.createOrder(request, LocalDateTime.now()))
     }
 }
