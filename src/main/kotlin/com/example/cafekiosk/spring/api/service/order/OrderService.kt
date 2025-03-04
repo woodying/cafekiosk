@@ -7,8 +7,8 @@ import com.example.cafekiosk.spring.domain.order.OrderRepository
 import com.example.cafekiosk.spring.domain.product.Product
 import com.example.cafekiosk.spring.domain.product.ProductRepository
 import com.example.cafekiosk.spring.domain.stock.StockRepository
-import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
 
 @Service

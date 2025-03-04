@@ -4,8 +4,8 @@ import com.example.cafekiosk.spring.api.controller.product.request.ProductCreate
 import com.example.cafekiosk.spring.api.service.product.response.ProductResponse
 import com.example.cafekiosk.spring.domain.product.Product
 import com.example.cafekiosk.spring.domain.product.ProductRepository
-import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class ProductService(
