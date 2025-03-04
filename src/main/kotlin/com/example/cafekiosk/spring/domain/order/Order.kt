@@ -15,7 +15,7 @@ data class Order(
     val id: Long? = null,
 
     @Enumerated(EnumType.STRING)
-    val status: Status,
+    var status: Status,
 
     val registeredDateTime: LocalDateTime,
 
