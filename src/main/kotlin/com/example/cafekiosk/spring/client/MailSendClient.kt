@@ -10,12 +10,13 @@ class MailSendClient {
 
     fun send(senderEmail: String, recipientEmail: String, title: String, content: String): Boolean {
         logger.info(
-            "메일 전송 - " +
+            "[메일 전송] " +
                     "senderEmail: $senderEmail, " +
                     "recipientEmail: $recipientEmail, " +
                     "title: $title, " +
                     "content: $content"
         )
+
         return true
     }
 }
