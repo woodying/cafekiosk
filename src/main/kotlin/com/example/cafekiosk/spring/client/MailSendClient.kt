@@ -16,6 +16,7 @@ class MailSendClient {
                     "title: $title, " +
                     "content: $content"
         )
+
         return true
     }
 }
