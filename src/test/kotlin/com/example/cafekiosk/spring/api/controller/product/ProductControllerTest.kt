@@ -1,34 +1,19 @@
 package com.example.cafekiosk.spring.api.controller.product
 
+import com.example.cafekiosk.spring.ControllerTestSupport
 import com.example.cafekiosk.spring.api.controller.product.request.ProductCreateRequest
-import com.example.cafekiosk.spring.api.service.product.ProductService
 import com.example.cafekiosk.spring.api.service.product.response.ProductResponse
 import com.example.cafekiosk.spring.domain.product.Product
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.MediaType
-import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 
-@WebMvcTest(ProductController::class)
-class ProductControllerTest {
-
-    @Autowired
-    private lateinit var mockMvc: MockMvc
-
-    @Autowired
-    private lateinit var objectMapper: ObjectMapper
-
-    @MockkBean
-    private lateinit var productService: ProductService
+class ProductControllerTest : ControllerTestSupport() {
 
     @DisplayName("판매 상품을 조회한다.")
     @Test

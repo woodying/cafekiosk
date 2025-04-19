@@ -1,18 +1,17 @@
 package com.example.cafekiosk.spring.domain.product
 
+import com.example.cafekiosk.spring.IntegrationTestSupport
+import jakarta.transaction.Transactional
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.groups.Tuple.tuple
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
-import org.springframework.test.context.ActiveProfiles
 
-@DataJpaTest
-@ActiveProfiles("test")
+@Transactional
 class ProductRepositoryTest(
     @Autowired private val productRepository: ProductRepository,
-) {
+) : IntegrationTestSupport() {
 
     @DisplayName("원하는 판매상태를 가진 상품들을 조회한다.")
     @Test

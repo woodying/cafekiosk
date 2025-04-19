@@ -1,5 +1,6 @@
 package com.example.cafekiosk.spring.api.service.product
 
+import com.example.cafekiosk.spring.IntegrationTestSupport
 import com.example.cafekiosk.spring.api.controller.product.request.ProductCreateRequest
 import com.example.cafekiosk.spring.domain.product.Product
 import com.example.cafekiosk.spring.domain.product.ProductRepository
@@ -9,15 +10,11 @@ import org.assertj.core.groups.Tuple.tuple
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.ActiveProfiles
 import kotlin.reflect.full.declaredFunctions
 import kotlin.reflect.jvm.isAccessible
 
-@ActiveProfiles("test")
 @Transactional
-@SpringBootTest
-class ProductServiceTest {
+class ProductServiceTest : IntegrationTestSupport() {
 
     @Autowired
     private lateinit var productService: ProductService

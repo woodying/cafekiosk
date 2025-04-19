@@ -1,21 +1,18 @@
 package com.example.cafekiosk.spring.domain.stock
 
+import com.example.cafekiosk.spring.IntegrationTestSupport
 import jakarta.transaction.Transactional
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.groups.Tuple.tuple
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
-import org.springframework.test.context.ActiveProfiles
 import kotlin.jvm.optionals.getOrNull
 
-@DataJpaTest
 @Transactional
-@ActiveProfiles("test")
 class StockRepositoryTest(
     @Autowired private val stockRepository: StockRepository
-) {
+) : IntegrationTestSupport() {
 
     @DisplayName("상품번호 리스트로 재고를 조회한다.")
     @Test

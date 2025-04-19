@@ -1,5 +1,6 @@
 package com.example.cafekiosk.spring.api.service.order
 
+import com.example.cafekiosk.spring.IntegrationTestSupport
 import com.example.cafekiosk.spring.client.MailSendClient
 import com.example.cafekiosk.spring.domain.history.mail.MailSendHistoryRepository
 import com.example.cafekiosk.spring.domain.order.Order
@@ -9,18 +10,18 @@ import com.example.cafekiosk.spring.domain.product.Product
 import com.example.cafekiosk.spring.domain.product.ProductRepository
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
+import jakarta.transaction.Transactional
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
 import java.time.LocalDate
 import java.time.LocalDateTime
 import kotlin.test.assertTrue
 
-@SpringBootTest
-class OrderStatisticsServiceTest {
+@Transactional
+class OrderStatisticsServiceTest : IntegrationTestSupport() {
 
     @Autowired
     private lateinit var orderStatisticsService: OrderStatisticsService

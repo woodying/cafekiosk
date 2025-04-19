@@ -1,36 +1,21 @@
 package com.example.cafekiosk.spring.api.controller.order
 
+import com.example.cafekiosk.spring.ControllerTestSupport
 import com.example.cafekiosk.spring.api.controller.order.request.OrderCreateRequest
-import com.example.cafekiosk.spring.api.service.order.OrderService
 import com.example.cafekiosk.spring.api.service.order.response.OrderResponse
 import com.example.cafekiosk.spring.api.service.product.response.ProductResponse
 import com.example.cafekiosk.spring.domain.product.Product
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.MediaType
-import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import java.time.LocalDateTime
 
-@WebMvcTest(OrderController::class)
-class OrderControllerTest {
-
-    @Autowired
-    private lateinit var mockMvc: MockMvc
-
-    @Autowired
-    private lateinit var objectMapper: ObjectMapper
-
-    @MockkBean
-    private lateinit var orderService: OrderService
+class OrderControllerTest : ControllerTestSupport() {
 
     @DisplayName("신규 주문을 등록한다.")
     @Test
