@@ -12,6 +12,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.http.MediaType
 import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document
+import org.springframework.restdocs.operation.preprocess.Preprocessors.*
 import org.springframework.restdocs.payload.PayloadDocumentation.*
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers
@@ -61,9 +62,11 @@ class ProductControllerDocsTest : RestDocsSupport() {
             .andDo(
                 document(
                     "product-create",
+                    preprocessRequest(prettyPrint()),
+                    preprocessResponse(prettyPrint()),
                     requestFields(
                         fieldWithPath("productType").description("상품 타입"),
-                        fieldWithPath("name").description("상품 이름"),
+                        fieldWithPath("name").optional().description("상품 이름"),
                         fieldWithPath("price").description("상품 가격"),
                         fieldWithPath("sellingStatus").description("판매 상태")
                     ),
@@ -79,7 +82,7 @@ class ProductControllerDocsTest : RestDocsSupport() {
                         fieldWithPath("data.price").description("상품 가격"),
                         fieldWithPath("data.createdAt").description("생성 일시"),
                         fieldWithPath("data.modifiedAt").description("수정 일시")
-                    )
+                    ),
                 )
             )
     }

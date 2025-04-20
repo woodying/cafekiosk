@@ -69,10 +69,11 @@ tasks.asciidoctor {
 
 val copyDocument = tasks.register<Copy>("copyDocument") {
     dependsOn(tasks.asciidoctor)
+
     doFirst {
         delete(file("src/main/resources/static/docs"))
     }
-    from(file("build/docs/asciidoc"))
+    from(file("${tasks.asciidoctor.get().outputDir}"))
     into(file("src/main/resources/static/docs"))
 }
 
